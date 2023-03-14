@@ -1,3 +1,5 @@
+import { AuthEffects } from './state/auth.effects';
+import { EffectsModule } from '@ngrx/effects';
 import { MaterialModule } from './../../shared/material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -19,6 +21,7 @@ const routes:Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    EffectsModule.forFeature([AuthEffects]),
     ReactiveFormsModule,
     MaterialModule
   ]

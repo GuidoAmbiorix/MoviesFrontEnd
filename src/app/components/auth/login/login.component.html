@@ -7,9 +7,9 @@
       <form  [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
     <mat-form-field appearance="fill">
       <mat-label>Email</mat-label>
-      <input matInput formControlName="email">
+      <input matInput formControlName="username">
     </mat-form-field>
-    <h4 style="color:red">{{showErrors('email')}}</h4>
+    <h4 style="color:red">{{showErrors('username')}}</h4>
 
     <mat-form-field appearance="fill">
       <mat-label>Enter your password</mat-label>

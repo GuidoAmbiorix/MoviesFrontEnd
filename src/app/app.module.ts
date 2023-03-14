@@ -1,3 +1,4 @@
+import { appReducer } from './store/app.state';
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -25,7 +26,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     MaterialModule,
     ReactiveFormsModule,
     HttpClientModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot(appReducer),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
