@@ -15,7 +15,6 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   hide = true;
-  isAuthenticated!:Observable<boolean>;
 
 constructor(private store:Store<AppState>,
   private router:Router
@@ -23,7 +22,6 @@ constructor(private store:Store<AppState>,
 
 
 ngOnInit(): void {
-  this.isAuthenticated = this.store.select(isAuthenticated)
 }
 
 loginForm = new FormGroup({

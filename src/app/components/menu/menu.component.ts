@@ -1,3 +1,4 @@
+import { logoutStart } from './../auth/state/auth.actions';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -19,7 +20,12 @@ export class MenuComponent implements OnInit{
 
 
   ngOnInit(): void {
-    this.isAuthenticated = this.store.select(isAuthenticated)
+    this.isAuthenticated = this.store.select(isAuthenticated);
+  }
+
+  Logout(){
+    this.store.dispatch(logoutStart());
+    this.router.navigate(['/auth']);
   }
 
 }

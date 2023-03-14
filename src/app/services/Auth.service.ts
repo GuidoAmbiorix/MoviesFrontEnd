@@ -1,3 +1,5 @@
+import { RegisterResponse } from './../interfaces/register-response';
+import { RegisterRequest } from './../interfaces/register-request';
 import { LoginResponse } from './../interfaces/login-response';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -15,6 +17,10 @@ export class AuthService {
 
     login(userName:string, password:string):Observable<LoginResponse>{
       return this.http.post<LoginResponse>(`https://localhost:7202/api/Authentication/login`,{userName,password,returnSecureToken:true});
+    }
+
+    Register(username:string,email:string,password:string):Observable<RegisterResponse>{
+      return this.http.post<RegisterResponse>(`https://localhost:7202/api/Authentication/register`,{username,email,password});
     }
 
     // getErrorMessage(message:string){

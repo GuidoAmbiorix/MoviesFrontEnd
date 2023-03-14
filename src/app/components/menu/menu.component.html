@@ -1,4 +1,12 @@
-<mat-toolbar color="primary" class="container">
-  <button mat-raised-button color="warn" routerLink="" *ngIf="(isAuthenticated | async)">Home</button>
-  <button mat-raised-button color="warn" routerLink="auth" *ngIf="!(isAuthenticated | async)">Login</button>
-</mat-toolbar>
+<div class="container">
+  <mat-toolbar color="primary" class="container">
+    <button mat-raised-button color="warn" routerLink="home" *ngIf="(isAuthenticated | async)">Home</button>
+    <div class="auth">
+      <a mat-raised-button color="warn" routerLink="auth/login" *ngIf="!(isAuthenticated | async)">Login</a>
+      <a mat-raised-button color="warn" routerLink="auth/register" *ngIf="!(isAuthenticated | async)">Register</a>
+      <div class="logout" *ngIf="(isAuthenticated | async)">
+        <a  mat-raised-button color="warn"  (click)="Logout()">Logout</a>
+      </div>
+    </div>
+  </mat-toolbar>
+</div>
