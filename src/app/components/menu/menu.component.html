@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
-  <span>Movies</span>
+<mat-toolbar color="primary" class="container">
+  <button mat-raised-button color="warn" routerLink="" *ngIf="(isAuthenticated | async)">Home</button>
+  <button mat-raised-button color="warn" routerLink="auth" *ngIf="!(isAuthenticated | async)">Login</button>
 </mat-toolbar>
-

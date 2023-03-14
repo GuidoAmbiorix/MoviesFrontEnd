@@ -1,8 +1,11 @@
+import { isAuthenticated } from './../state/auth.selector';
+import { Observable } from 'rxjs';
 import { loginStart } from './../state/auth.actions';
 import { AppState } from './../../../store/app.state';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,12 +15,16 @@ import { Store } from '@ngrx/store';
 export class LoginComponent implements OnInit {
 
   hide = true;
+  isAuthenticated!:Observable<boolean>;
+
+constructor(private store:Store<AppState>,
+  private router:Router
+  ){}
 
 
-constructor(private store:Store<AppState>){}
-
-
-ngOnInit(): void {}
+ngOnInit(): void {
+  this.isAuthenticated = this.store.select(isAuthenticated)
+}
 
 loginForm = new FormGroup({
   username:new FormControl('',[Validators.required]),
@@ -27,8 +34,7 @@ loginForm = new FormGroup({
 onLoginSubmit(){
  const username:any = this.loginForm!.value!['username'];
  const password:any = this.loginForm!.value!['password'];
- this.store.dispatch(loginStart({username,password}))
-
+ this.store.dispatch(loginStart({username,password}));
 }
 
 showErrors(formName:string):any{
