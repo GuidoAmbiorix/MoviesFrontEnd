@@ -3,7 +3,7 @@ import { loginStart, loginSuccess, registerStart, registerSuccess, logoutStart }
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { exhaustMap, map, of, tap } from 'rxjs';
-import { AuthService } from "src/app/services/Auth.service";
+import { AuthService } from "src/app/components/auth/services/Auth.service";
 
 @Injectable()
 export class AuthEffects{
