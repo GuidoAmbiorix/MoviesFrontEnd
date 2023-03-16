@@ -14,11 +14,13 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AuthToktenInterceptor } from './components/auth/services/authToken.interceptor';
+import { FormPracticeComponent } from './components/form-practice/form-practice.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
+    FormPracticeComponent,
   ],
   imports: [
     BrowserModule,
