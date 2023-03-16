@@ -3,10 +3,12 @@ import { Router } from '@angular/router';
 import { loginStart, loginSuccess, registerStart, registerSuccess, logoutStart } from './auth.actions';
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { exhaustMap, map, of, tap } from 'rxjs';
+import { catchError, delay, exhaustMap, interval, map, of, tap } from 'rxjs';
 import { AuthService } from "src/app/components/auth/services/Auth.service";
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/shared/store/app.state';
+// ES6 Modules or TypeScript
+import Swal from 'sweetalert2'
 
 @Injectable()
 export class AuthEffects{
@@ -24,7 +26,17 @@ export class AuthEffects{
         exhaustMap(action =>{
           return this.authService.login(action.username,action.password).pipe(
             map(data =>{
+              this.store.dispatch(setLoadingSpinner({status:false}));
               return loginSuccess({response:data});
+            }),
+            catchError((error) =>{
+              this.store.dispatch(setLoadingSpinner({status:false}));
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Username or password are incorrect',
+              })
+              return of();
             })
           )
         })
@@ -37,7 +49,6 @@ export class AuthEffects{
         exhaustMap(action => {
           return this.authService.Register(action.username,action.email,action.password).pipe(
             map(data =>{
-              this.store.dispatch(setLoadingSpinner({status:false}));
               return registerSuccess({response:data});
             })
           )

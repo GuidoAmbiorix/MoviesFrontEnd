@@ -17,7 +17,6 @@ export class LoginComponent implements OnInit {
 
   hide = true;
 
-
 constructor(private store:Store<AppState>,
   private router:Router
   ){}

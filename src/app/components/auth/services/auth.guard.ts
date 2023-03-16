@@ -1,24 +1,47 @@
-import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { Injectable, inject } from '@angular/core';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router, CanActivateFn, CanActivateChildFn, CanDeactivateFn, CanMatchFn, Route, UrlSegment } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, map } from 'rxjs';
 import { AppState } from '../../../shared/store/app.state';
 import { isAuthenticated } from '../state/auth.selector';
 
 
-@Injectable({providedIn:'root'})
-export class AuthGuard implements CanActivate{
+export const canActivate: CanActivateFn = (
+  route:ActivatedRouteSnapshot,
+  state:RouterStateSnapshot
+) =>{
 
-  constructor(private store:Store<AppState>,private router:Router){}
+  const store = inject(Store);
+  const router = inject(Router);
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-   return this.store.select(isAuthenticated).pipe(
-    map((authenticate) =>{
-      if(!authenticate){
-        return this.router.createUrlTree(['auth']);
-      }
-      return true;
-    })
-   );
-  }
+return store.select(isAuthenticated).pipe(
+  map((authenticate) => {
+    if(!authenticate){
+      return router.createUrlTree(['auth']);
+    }
+    return true;
+  })
+)
 }
+
+export const canMatch: CanMatchFn = (
+  route:Route,
+  segments:UrlSegment[]
+) =>{
+
+  const store = inject(Store);
+  const router = inject(Router);
+
+return store.select(isAuthenticated).pipe(
+  map((authenticate) => {
+    if(!authenticate){
+      return router.createUrlTree(['auth']);
+    }
+    return true;
+  })
+)
+}
+
+
+
+

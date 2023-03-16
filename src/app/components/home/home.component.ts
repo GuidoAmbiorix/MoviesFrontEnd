@@ -1,3 +1,4 @@
+import { getLoading } from './../../shared/state/shared.selector';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -19,7 +20,8 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.isAuthenticated = this.store.select(isAuthenticated)
+    this.isAuthenticated = this.store.select(isAuthenticated);
+    this.store.select(getLoading).subscribe(data => console.log(data));
   }
 
 }

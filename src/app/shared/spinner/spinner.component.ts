@@ -9,7 +9,7 @@ import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 })
 export class SpinnerComponent {
   color: ThemePalette = 'primary';
-  mode: ProgressSpinnerMode = 'determinate';
+  mode: ProgressSpinnerMode = 'indeterminate';
   value = 50;
   @Input() dynamicStyle!:Object;
 }

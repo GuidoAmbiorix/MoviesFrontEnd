@@ -10,13 +10,13 @@ import { sharedReducer } from '../state/shared.reducer';
 
 
 export interface AppState{
-  [AUTH_STATE_NAME]:AuthState,
-  [FORM_STATE_NAME]:FormState,
-  [SHARED_STATE_NAME]:sharedState
+  [SHARED_STATE_NAME]:sharedState;
+  [AUTH_STATE_NAME]:AuthState;
+  [FORM_STATE_NAME]:FormState;
 }
 
 export const appReducer = {
+  [SHARED_STATE_NAME]:sharedReducer,
   [AUTH_STATE_NAME]:AuthReducer,
   [FORM_STATE_NAME]:formReducer,
-  [SHARED_STATE_NAME]:sharedReducer
 }

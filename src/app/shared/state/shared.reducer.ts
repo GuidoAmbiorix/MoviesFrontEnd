@@ -1,6 +1,6 @@
 import { setLoadingSpinner } from './shared.actions';
-import { initialState } from './../../components/auth/state/auth.state';
 import { createReducer, on } from '@ngrx/store';
+import { initialState } from './shared.state';
 
 
 const _sharedReducer = createReducer(initialState,

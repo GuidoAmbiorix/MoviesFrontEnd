@@ -26,7 +26,7 @@ const routes:Routes = [
     RouterModule.forChild(routes),
     EffectsModule.forFeature([AuthEffects]),
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
   ]
 })
 export class AuthModule { }
