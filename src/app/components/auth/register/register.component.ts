@@ -1,6 +1,6 @@
 import { RegisterRequest } from './../../../interfaces/register-request';
 import { registerStart } from './../state/auth.actions';
-import { AppState } from './../../../store/app.state';
+import { AppState } from '../../../shared/store/app.state';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { FormControl, FormGroup, Validators } from '@angular/forms';

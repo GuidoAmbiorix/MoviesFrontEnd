@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { AppState } from 'src/app/store/app.state';
+import { AppState } from 'src/app/shared/store/app.state';
 import { isAuthenticated } from '../auth/state/auth.selector';
 
 @Component({

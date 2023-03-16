@@ -1,5 +1,5 @@
 import { getToken } from '../state/auth.selector';
-import { AppState } from '../../../store/app.state';
+import { AppState } from '../../../shared/store/app.state';
 import { Store } from '@ngrx/store';
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpEvent, HttpHandler, HttpRequest } from '@angular/common/http';

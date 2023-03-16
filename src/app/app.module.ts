@@ -1,4 +1,4 @@
-import { appReducer } from './store/app.state';
+import { appReducer } from './shared/store/app.state';
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -15,12 +15,14 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AuthToktenInterceptor } from './components/auth/services/authToken.interceptor';
 import { FormPracticeComponent } from './components/form-practice/form-practice.component';
+import { SpinnerComponent } from './shared/spinner/spinner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
     FormPracticeComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,

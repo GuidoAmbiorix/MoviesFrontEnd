@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, map } from 'rxjs';
-import { AppState } from '../../../store/app.state';
+import { AppState } from '../../../shared/store/app.state';
 import { isAuthenticated } from '../state/auth.selector';
 
 

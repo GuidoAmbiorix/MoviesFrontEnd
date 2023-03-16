@@ -1,4 +1,4 @@
-import { AppState } from 'src/app/store/app.state';
+import { AppState } from 'src/app/shared/store/app.state';
 import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
