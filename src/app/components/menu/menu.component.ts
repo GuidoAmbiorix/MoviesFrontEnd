@@ -23,9 +23,8 @@ export class MenuComponent implements OnInit{
     this.isAuthenticated = this.store.select(isAuthenticated);
   }
 
-  Logout(){
+  onLogout(){
     this.store.dispatch(logoutStart());
-    this.router.navigate(['/auth']);
   }
 
 }
