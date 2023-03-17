@@ -10,6 +10,7 @@ import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
   imports : [MaterialModule, NgTemplateOutlet],
   template:`
   <ng-container [ngTemplateOutlet]="dynamicSpinner || defaultWidgetContent"></ng-container>
+
    <ng-template #defaultWidgetContent>
   <div class="spinner">
     <mat-progress-spinner

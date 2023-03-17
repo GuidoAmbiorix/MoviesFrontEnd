@@ -1,7 +1,7 @@
 import { GetMovies } from './../interfaces/get-movies';
 
 export interface MoviesState{
-  movies: GetMovies | null
+  movies: GetMovies | GetMovies[] | null
 };
 
 
