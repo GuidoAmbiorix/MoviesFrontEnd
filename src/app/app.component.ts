@@ -5,6 +5,8 @@ import { getLoading } from './shared/state/shared.selector';
 import { Store } from '@ngrx/store';
 import { AppState } from './shared/store/app.state';
 import { Router } from '@angular/router';
+import { ThemePalette } from '@angular/material/core';
+import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-root',
@@ -14,14 +16,9 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit{
   title = 'MoviesFrontEnd';
   Showloading!:Observable<boolean>;
-
-  SpinnerStyles = {
-    'display': 'flex',
-  'justify-content': 'center',
-  'align-items': 'center',
-  'height': '100%',
-  'widht':'100%'
-    };
+  color: ThemePalette = 'warn';
+  mode: ProgressSpinnerMode = 'indeterminate';
+  value = 50;
 
   constructor(private store:Store<sharedState>,
     private router:Router

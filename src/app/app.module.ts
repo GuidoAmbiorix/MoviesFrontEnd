@@ -22,7 +22,6 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
     AppComponent,
     MenuComponent,
     FormPracticeComponent,
-    SpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +30,7 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
     MaterialModule,
     ReactiveFormsModule,
     HttpClientModule,
-
+    SpinnerComponent,
     StoreModule.forRoot(appReducer),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })

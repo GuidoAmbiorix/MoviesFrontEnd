@@ -23,6 +23,7 @@ export class AuthEffects{
     login$ = createEffect(():any =>{
       return this.action$.pipe(
         ofType(loginStart),
+        delay(2000),
         exhaustMap(action =>{
           return this.authService.login(action.username,action.password).pipe(
             map(data =>{

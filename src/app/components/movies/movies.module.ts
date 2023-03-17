@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MoviesListComponent } from './movies-list/movies-list.component';
 import { AddMovieComponent } from './add-movie/add-movie.component';
 import { EditMovieComponent } from './edit-movie/edit-movie.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -15,7 +16,8 @@ import { EditMovieComponent } from './edit-movie/edit-movie.component';
   ],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ]
 })
 export class MoviesModule { }

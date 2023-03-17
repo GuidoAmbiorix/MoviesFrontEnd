@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./movies-list.component.scss']
 })
 export class MoviesListComponent {
+  constructor(){}
+
 
 }
