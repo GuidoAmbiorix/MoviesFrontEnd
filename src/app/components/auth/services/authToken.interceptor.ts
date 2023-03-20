@@ -21,7 +21,9 @@ export class AuthToktenInterceptor implements HttpInterceptor {
           }
 
           let modifieddRed = req.clone({
-            params:req.params.append('auth',token),
+            setHeaders:{
+              Authorization: `Bearer ${token}`
+            }
           });
 
             return next.handle(modifieddRed);

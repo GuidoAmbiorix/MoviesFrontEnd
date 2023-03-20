@@ -1,4 +1,10 @@
 export interface GetMovies {
-  desription:string,
-  idCategory:number
+  description:string,
+  idCategory:number,
+  CategoryName:string
 }
+
+export interface GetCategoryById {
+  description:string,
+}
+
