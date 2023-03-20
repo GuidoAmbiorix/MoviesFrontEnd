@@ -4,7 +4,8 @@ export interface GetMovies {
   CategoryName:string
 }
 
-export interface GetCategoryById {
+export interface GetCategory {
+  id:number,
   description:string,
 }
 

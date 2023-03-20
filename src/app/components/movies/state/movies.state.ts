@@ -1,10 +1,12 @@
-import { GetMovies } from './../interfaces/get-movies';
+import { GetMovies, GetCategory } from './../interfaces/get-movies';
 
 export interface MoviesState{
-  movies: GetMovies | GetMovies[] | null
+  movies: GetMovies | GetMovies[] | null,
+  category:GetCategory | GetCategory[] | null
 };
 
 
 export const initialState:MoviesState = {
 movies: null,
+category:null
 }

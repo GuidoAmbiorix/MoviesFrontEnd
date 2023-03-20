@@ -1,4 +1,4 @@
-import { GetAllMoviesSuccess } from './movies.actions';
+import { GetAllMoviesSuccess, GetAllCategoriesStart, GetAllCategoriesSuccess } from './movies.actions';
 import { createReducer, on } from '@ngrx/store';
 import { initialState } from './movies.state';
 
@@ -7,6 +7,12 @@ const _MoviesReducer = createReducer(initialState,
     return {
       ...state,
       movies:action.MoviesList
+    }
+  }),
+  on(GetAllCategoriesSuccess,(state,action) =>{
+    return {
+      ...state,
+      category:action.categoriesList
     }
   })
   )

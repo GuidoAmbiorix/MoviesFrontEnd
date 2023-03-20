@@ -1,10 +1,10 @@
-import { GetAllMoviesStart } from './../state/movies.actions';
+import { GetAllMoviesStart, GetAllCategoriesStart } from './../state/movies.actions';
 import { MoviesState } from './../state/movies.state';
 import { GetMovies } from './../interfaces/get-movies';
-import { Observable } from 'rxjs';
+import { Observable, combineLatest, map, tap } from 'rxjs';
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { GetListMovies } from '../state/movies.selector';
+import { GetListMovies, getListCategories } from '../state/movies.selector';
 
 @Component({
   selector: 'app-movies-list',
@@ -13,11 +13,15 @@ import { GetListMovies } from '../state/movies.selector';
 })
 export class MoviesListComponent {
 
+
+
   constructor(private store:Store<MoviesState>){}
 
   ngOnInit(): void {
-  this.store.dispatch(GetAllMoviesStart())
+  this.store.dispatch(GetAllMoviesStart());
+  this.store.dispatch(GetAllCategoriesStart())
   }
+
 
   MoviesList$ = this.store.select(GetListMovies);
 
