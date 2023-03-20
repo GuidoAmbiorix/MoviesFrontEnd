@@ -8,6 +8,7 @@ const routes: Routes = [
   {path:'auth',loadChildren:() => import('./components/auth/auth.module').then(a => a.AuthModule)},
   {path:'home',loadChildren:() => import('./components/home/home.module').then(a => a.HomeModule),canMatch:[canMatch]},
   {path:'forms',loadChildren:() => import('./components/form-practice/form-practice.module').then(a => a.FormPracticeModule),canMatch:[canMatch]},
+  {path:'movies',loadChildren:() => import('./components/movies/movies.module').then(a => a.MoviesModule)},
 ];
 
 @NgModule({
