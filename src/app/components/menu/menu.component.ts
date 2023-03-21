@@ -1,3 +1,4 @@
+import { CookieService } from 'ngx-cookie-service';
 import { logoutStart } from './../auth/state/auth.actions';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -15,7 +16,8 @@ export class MenuComponent implements OnInit{
   isAuthenticated!:Observable<boolean>;
 
   constructor(private store:Store<AppState>,
-    private router:Router
+    private router:Router,
+    private CookieService:CookieService
     ){}
 
 
@@ -25,6 +27,7 @@ export class MenuComponent implements OnInit{
 
   onLogout(){
     this.store.dispatch(logoutStart());
+    this.CookieService.delete("token")
   }
 
 }

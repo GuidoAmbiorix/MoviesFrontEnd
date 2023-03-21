@@ -1,3 +1,4 @@
+import { CookieService } from 'ngx-cookie-service';
 import { GetAllMoviesStart, GetAllCategoriesStart } from './../state/movies.actions';
 import { MoviesState } from './../state/movies.state';
 import { GetMovies } from './../interfaces/get-movies';
@@ -5,6 +6,7 @@ import { Observable, combineLatest, map, tap } from 'rxjs';
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { GetListMovies, getListCategories } from '../state/movies.selector';
+import { getToken } from '../../auth/state/auth.selector';
 
 @Component({
   selector: 'app-movies-list',
@@ -15,17 +17,16 @@ export class MoviesListComponent {
 
 
 
-  constructor(private store:Store<MoviesState>){}
+  constructor(private store:Store<MoviesState>,private cookieService:CookieService){}
 
   ngOnInit(): void {
   this.store.dispatch(GetAllMoviesStart());
-  this.store.dispatch(GetAllCategoriesStart())
   }
 
 
   MoviesList$ = this.store.select(GetListMovies);
 
-  displayedColumns: string[] = ['description', 'categoryName'];
+  displayedColumns: string[] = ['id','description', 'categoryName'];
   dataSource:any =  this.MoviesList$;
 
 }

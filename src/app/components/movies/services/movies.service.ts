@@ -1,6 +1,6 @@
 import { CategoryService } from './category.service';
 import { GetMovies } from './../interfaces/get-movies';
-import { Observable, combineLatest, map, shareReplay } from 'rxjs';
+import { Observable, combineLatest, map, shareReplay, tap, mergeMap, forkJoin } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -19,6 +19,18 @@ export class MoviesService {
 
   GetAllMovies():Observable<GetMovies[]>{
     return this.http.get<GetMovies[]>(this.URL);
+  }
+
+  GetMoviesWithCategories():Observable<GetMovies[]>{
+    return combineLatest([this.GetAllMovies(),this.categoryService.GetAllCategories()]).pipe(
+      map(([movies,categories]) =>{
+        return movies.map(movie =>({
+          ...movie,
+          categoryName: categories.find(c => c.id === movie.idCategory)?.description
+        } as GetMovies)
+        )
+      }),tap(data => console.log(data))
+    )
   }
 
 }

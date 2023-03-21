@@ -9,6 +9,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthToktenInterceptor } from '../auth/services/authToken.interceptor';
+import { CookieService } from 'ngx-cookie-service';
+import { FiltersComponent } from './filters/filters.component';
+import { ReactiveFormsModule } from '@angular/forms'
 
 const routes:Routes = [
   {path:'',component:MoviesListComponent}
@@ -20,14 +23,17 @@ const routes:Routes = [
   declarations: [
     MoviesListComponent,
     AddMovieComponent,
-    EditMovieComponent
+    EditMovieComponent,
+    FiltersComponent
   ],
   imports: [
     CommonModule,
     MaterialModule,
     HttpClientModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes),
     EffectsModule.forFeature([MoviesEffects]),
+
   ],
   providers: [{provide:HTTP_INTERCEPTORS, useClass:AuthToktenInterceptor, multi:true}],
 })

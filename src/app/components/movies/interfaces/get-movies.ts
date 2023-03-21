@@ -1,7 +1,8 @@
 export interface GetMovies {
+  id:number,
   description:string,
   idCategory:number,
-  CategoryName:string
+  categoryName:string
 }
 
 export interface GetCategory {
@@ -9,3 +10,6 @@ export interface GetCategory {
   description:string,
 }
 
+export interface FilterMovie {
+  description:string
+}

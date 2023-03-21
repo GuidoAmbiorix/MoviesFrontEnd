@@ -1,0 +1,12 @@
+<div class="container">
+  <form  [formGroup]="FiltersForm">
+  <mat-form-field appearance="fill">
+    <mat-label>Select Category</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let category of (ListCategories | async) " [value]=category.id>
+        {{category.description}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
+</div>

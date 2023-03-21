@@ -1,3 +1,4 @@
+import { CookieService } from 'ngx-cookie-service';
 import { getToken } from '../state/auth.selector';
 import { AppState } from '../../../shared/store/app.state';
 import { Store } from '@ngrx/store';
@@ -8,12 +9,14 @@ import { Observable, exhaustMap, reduce } from 'rxjs';
 @Injectable()
 export class AuthToktenInterceptor implements HttpInterceptor {
 
-  constructor(private store:Store<AppState>){}
+  private cookie_Name = '';
+  constructor(private store:Store<AppState>,private CookieService:CookieService){}
 
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
     ): Observable<HttpEvent<any>> {
+
       return this.store.select(getToken).pipe(exhaustMap((token) => {
 
           if(!token){
@@ -30,5 +33,5 @@ export class AuthToktenInterceptor implements HttpInterceptor {
          })
 
       );
-  }
+   }
 }

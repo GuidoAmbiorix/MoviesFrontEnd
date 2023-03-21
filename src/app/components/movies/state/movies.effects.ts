@@ -1,3 +1,4 @@
+import { getListCategories } from './movies.selector';
 import { GetMovies } from './../interfaces/get-movies';
 import { CategoryService } from './../services/category.service';
 import { setLoadingSpinner } from './../../../shared/state/shared.actions';
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 import { AppState } from 'src/app/shared/store/app.state';
 import { Store } from '@ngrx/store';
 import { GetAllCategoriesSuccess, GetAllMoviesStart, GetAllMoviesSuccess } from './movies.actions';
-import { catchError, map, mergeMap, of, combineLatest, tap } from 'rxjs';
+import { catchError, map, mergeMap, of, combineLatest, tap, switchMap, forkJoin } from 'rxjs';
 import Swal from 'sweetalert2';
 
 
@@ -28,45 +29,33 @@ export class MoviesEffects{
     return this.action$.pipe(
       ofType(GetAllMoviesStart),
       mergeMap(action =>{
-        return combineLatest(([this.moviesServices.GetAllMovies(),this.CategoryService.GetAllCategories()]))
-        .pipe(
-          map(([movies,categories]) =>{
-          movies.map(movie => ({
-            ...movie,
-            CategoryName: categories.find(c => movie.idCategory === c.id)?.description
-          }))
-          return GetAllMoviesSuccess({MoviesList:movies})
-          }),tap(data => console.log(data))
 
+          return this.moviesServices.GetMoviesWithCategories().pipe(
+          map(movies =>{
+          return GetAllMoviesSuccess({MoviesList:movies})
+          }),tap(data => console.log(data)),
+          catchError((error) =>{
+            // this.store.dispatch(setLoadingSpinner({status:false}));
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Error loading loading table',
+            })
+            return of();
+          })
         )
-        // return this.moviesServices.GetAllMovies().pipe(
-        //   map(data =>{
-        //     // this.store.dispatch(setLoadingSpinner({status:false}));
-        //     return GetAllMoviesSuccess({MoviesList:data})
-        //   }),
-        //   catchError((error) =>{
-        //     // this.store.dispatch(setLoadingSpinner({status:false}));
-        //     Swal.fire({
-        //       icon: 'error',
-        //       title: 'Oops...',
-        //       text: 'Error loading loading table',
-        //     })
-        //     return of();
-        //   })
-        // )
       })
     )
     })
 
-    getAllCategories$ = createEffect(():any =>{
+    GetListCategories$ = createEffect(():any =>{
       return this.action$.pipe(
         ofType(GetAllMoviesStart),
         mergeMap(action =>{
-          return this.CategoryService.GetAllCategories().pipe(
-            map(data =>{
-              // this.store.dispatch(setLoadingSpinner({status:false}));
-             return GetAllCategoriesSuccess({categoriesList:data})
-            }),
+            return this.CategoryService.GetAllCategories().pipe(
+            map(categories =>{
+            return GetAllCategoriesSuccess({categoriesList:categories})
+            }),tap(data => console.log(data)),
             catchError((error) =>{
               // this.store.dispatch(setLoadingSpinner({status:false}));
               Swal.fire({
