@@ -11,5 +11,5 @@ export interface GetCategory {
 }
 
 export interface FilterMovie {
-  description:string
+  idCategory:number
 }

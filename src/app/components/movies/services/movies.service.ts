@@ -29,7 +29,7 @@ export class MoviesService {
           categoryName: categories.find(c => c.id === movie.idCategory)?.description
         } as GetMovies)
         )
-      }),tap(data => console.log(data))
+      }),shareReplay(1)
     )
   }
 

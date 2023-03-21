@@ -17,7 +17,7 @@ export class MoviesListComponent {
 
 
 
-  constructor(private store:Store<MoviesState>,private cookieService:CookieService){}
+  constructor(private store:Store<MoviesState>){}
 
   ngOnInit(): void {
   this.store.dispatch(GetAllMoviesStart());
