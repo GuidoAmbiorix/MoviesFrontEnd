@@ -1,7 +1,13 @@
 
 <app-filters></app-filters>
+<app-spinner *ngIf="Showloading | async" [dynamicSpinner]="defaultWidgetContent"></app-spinner>
 
-<app-spinner *ngIf="Showloading | async"></app-spinner>
+<ng-template #defaultWidgetContent>
+  <div class="spinner">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+</ng-template>
+
 <div class="container" *ngIf="!(Showloading | async)">
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 

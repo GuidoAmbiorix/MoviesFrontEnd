@@ -22,6 +22,10 @@ FiltersForm = new FormGroup({
 
 ngOnInit(): void {
 this.ListCategories = this.store.select(getListCategories);
+
+this.FiltersForm.valueChanges.subscribe(data => console.log(data));
 }
+
+
 
 }
