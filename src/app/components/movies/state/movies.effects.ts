@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 import { AppState } from 'src/app/shared/store/app.state';
 import { Store } from '@ngrx/store';
 import { GetAllCategoriesSuccess, GetAllMoviesStart, GetAllMoviesSuccess } from './movies.actions';
-import { catchError, map, mergeMap, of, combineLatest, tap, switchMap, forkJoin } from 'rxjs';
+import { catchError, map, mergeMap, of, combineLatest, tap, switchMap, forkJoin, delay } from 'rxjs';
 import Swal from 'sweetalert2';
 
 
@@ -28,14 +28,15 @@ export class MoviesEffects{
   GetListMovies$ = createEffect(():any =>{
     return this.action$.pipe(
       ofType(GetAllMoviesStart),
+      delay(2000),
       mergeMap(action =>{
-
           return this.moviesServices.GetMoviesWithCategories().pipe(
           map(movies =>{
+            this.store.dispatch(setLoadingSpinner({status:false}));
           return GetAllMoviesSuccess({MoviesList:movies})
-          }),tap(data => console.log(data)),
+          }),
           catchError((error) =>{
-            // this.store.dispatch(setLoadingSpinner({status:false}));
+            this.store.dispatch(setLoadingSpinner({status:false}));
             Swal.fire({
               icon: 'error',
               title: 'Oops...',
@@ -57,7 +58,6 @@ export class MoviesEffects{
             return GetAllCategoriesSuccess({categoriesList:categories})
             }),tap(data => console.log(data)),
             catchError((error) =>{
-              // this.store.dispatch(setLoadingSpinner({status:false}));
               Swal.fire({
                 icon: 'error',
                 title: 'Oops...',

@@ -1,3 +1,4 @@
+import { SpinnerComponent } from './../../shared/spinner/spinner.component';
 import { MoviesEffects } from './state/movies.effects';
 import { MaterialModule } from './../../shared/material/material.module';
 import { NgModule } from '@angular/core';
@@ -31,6 +32,7 @@ const routes:Routes = [
     MaterialModule,
     HttpClientModule,
     ReactiveFormsModule,
+    SpinnerComponent,
     RouterModule.forChild(routes),
     EffectsModule.forFeature([MoviesEffects]),
 
